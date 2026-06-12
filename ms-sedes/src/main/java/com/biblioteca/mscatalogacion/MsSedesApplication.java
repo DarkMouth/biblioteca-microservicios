@@ -1,0 +1,13 @@
+package com.biblioteca.mscatalogacion;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class MsSedesApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(MsSedesApplication.class, args);
+    }
+
+}
