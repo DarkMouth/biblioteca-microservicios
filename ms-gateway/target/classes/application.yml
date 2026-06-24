@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: ms-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: ms-usuarios
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/usuarios/**
+
+        - id: ms-libros
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/libros/**
+
+        - id: ms-autores
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/autores/**
+
+        - id: ms-categorias
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/categorias/**
+
+        - id: ms-prestamos
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/prestamos/**
+
+        - id: ms-reservas
+          uri: http://localhost:8086
+          predicates:
+            - Path=/api/reservas/**
+
+        - id: ms-multas
+          uri: http://localhost:8087
+          predicates:
+            - Path=/api/multas/**
+
+        - id: ms-sedes
+          uri: http://localhost:8088
+          predicates:
+            - Path=/api/sedes/**
+
+        - id: ms-notificaciones
+          uri: http://localhost:8089
+          predicates:
+            - Path=/api/notificaciones/**
+
+        - id: ms-catalogacion
+          uri: http://localhost:8090
+          predicates:
+            - Path=/api/catalogacion/**
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

@@ -14,6 +14,7 @@
         <option value="$PROJECT_DIR$/ms-categorias/pom.xml" />
         <option value="$PROJECT_DIR$/ms-catalogacion/pom.xml" />
         <option value="$PROJECT_DIR$/ms-notificaciones/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-gateway/pom.xml" />
       </list>
     </option>
   </component>
