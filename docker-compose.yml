@@ -1,0 +1,209 @@
+version: "3.8"
+
+networks:
+  biblioteca-net:
+    driver: bridge
+
+volumes:
+  mysql-data:
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: biblioteca-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_USER: biblioteca
+      MYSQL_PASSWORD: biblioteca1234
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - biblioteca-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot1234"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  ms-usuarios:
+    build: ./ms-usuarios
+    container_name: ms-usuarios
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_usuarios?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: biblioteca
+      SPRING_DATASOURCE_PASSWORD: biblioteca1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - biblioteca-net
+
+  ms-libros:
+    build: ./ms-libros
+    container_name: ms-libros
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_libros?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: biblioteca
+      SPRING_DATASOURCE_PASSWORD: biblioteca1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - biblioteca-net
+
+  ms-autores:
+    build: ./ms-autores
+    container_name: ms-autores
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_autores?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: biblioteca
+      SPRING_DATASOURCE_PASSWORD: biblioteca1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - biblioteca-net
+
+  ms-categorias:
+    build: ./ms-categorias
+    container_name: ms-categorias
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_categorias?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: biblioteca
+      SPRING_DATASOURCE_PASSWORD: biblioteca1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - biblioteca-net
+
+  ms-prestamos:
+    build: ./ms-prestamos
+    container_name: ms-prestamos
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_prestamos?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: biblioteca
+      SPRING_DATASOURCE_PASSWORD: biblioteca1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - biblioteca-net
+
+  ms-reservas:
+    build: ./ms-reservas
+    container_name: ms-reservas
+    ports:
+      - "8086:8086"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_reservas?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: biblioteca
+      SPRING_DATASOURCE_PASSWORD: biblioteca1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - biblioteca-net
+
+  ms-multas:
+    build: ./ms-multas
+    container_name: ms-multas
+    ports:
+      - "8087:8087"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_multas?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: biblioteca
+      SPRING_DATASOURCE_PASSWORD: biblioteca1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - biblioteca-net
+
+  ms-sedes:
+    build: ./ms-sedes
+    container_name: ms-sedes
+    ports:
+      - "8088:8088"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_sedes?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: biblioteca
+      SPRING_DATASOURCE_PASSWORD: biblioteca1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - biblioteca-net
+
+  ms-notificaciones:
+    build: ./ms-notificaciones
+    container_name: ms-notificaciones
+    ports:
+      - "8089:8089"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_notificaciones?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: biblioteca
+      SPRING_DATASOURCE_PASSWORD: biblioteca1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - biblioteca-net
+
+  ms-catalogacion:
+    build: ./ms-catalogacion
+    container_name: ms-catalogacion
+    ports:
+      - "8090:8090"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/db_catalogacion?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: biblioteca
+      SPRING_DATASOURCE_PASSWORD: biblioteca1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - biblioteca-net
+
+  ms-gateway:
+    build: ./ms-gateway
+    container_name: ms-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - ms-usuarios
+      - ms-libros
+      - ms-autores
+      - ms-categorias
+      - ms-prestamos
+      - ms-reservas
+      - ms-multas
+      - ms-sedes
+      - ms-notificaciones
+      - ms-catalogacion
+    networks:
+      - biblioteca-net

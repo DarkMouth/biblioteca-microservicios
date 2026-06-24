@@ -5,52 +5,52 @@ spring:
     gateway:
       routes:
         - id: ms-usuarios
-          uri: http://localhost:8081
+          uri: http://ms-usuarios:8081
           predicates:
             - Path=/api/usuarios/**
 
         - id: ms-libros
-          uri: http://localhost:8082
+          uri: http://ms-libros:8082
           predicates:
             - Path=/api/libros/**
 
         - id: ms-autores
-          uri: http://localhost:8083
+          uri: http://ms-autores:8083
           predicates:
             - Path=/api/autores/**
 
         - id: ms-categorias
-          uri: http://localhost:8084
+          uri: http://ms-categorias:8084
           predicates:
             - Path=/api/categorias/**
 
         - id: ms-prestamos
-          uri: http://localhost:8085
+          uri: http://ms-prestamos:8085
           predicates:
             - Path=/api/prestamos/**
 
         - id: ms-reservas
-          uri: http://localhost:8086
+          uri: http://ms-reservas:8086
           predicates:
             - Path=/api/reservas/**
 
         - id: ms-multas
-          uri: http://localhost:8087
+          uri: http://ms-multas:8087
           predicates:
             - Path=/api/multas/**
 
         - id: ms-sedes
-          uri: http://localhost:8088
+          uri: http://ms-sedes:8088
           predicates:
             - Path=/api/sedes/**
 
         - id: ms-notificaciones
-          uri: http://localhost:8089
+          uri: http://ms-notificaciones:8089
           predicates:
             - Path=/api/notificaciones/**
 
         - id: ms-catalogacion
-          uri: http://localhost:8090
+          uri: http://ms-catalogacion:8090
           predicates:
             - Path=/api/catalogacion/**
 
