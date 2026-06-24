@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.biblioteca</groupId>
-    <artifactId>ms-usuarios</artifactId>
+    <artifactId>ms-catalogacion</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ms-usuarios</name>
-    <description>ms-usuarios</description>
+    <name>ms-catalogacion</name>
+    <description>ms-catalogacion</description>
     <url/>
     <licenses>
         <license/>
@@ -63,24 +63,15 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+    
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa-test</artifactId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webmvc-test</artifactId>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
